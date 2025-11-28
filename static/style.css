@@ -1,0 +1,165 @@
+@property --ticket-rotation {
+    syntax: "<angle>";
+    inherits: true;
+    initial-value: 0;
+}
+html {
+    overflow: hidden;
+}
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #168969;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+body[data-grabbing="true"], body[data-grabbing="true"] #ticket img {
+    cursor: grabbing;
+}
+
+#ticket-outer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+}
+
+@media (orientation: landscape) {
+    #ticket {  
+        perspective: 2000px;
+    }
+    #ticket img {
+        max-height: 95vh;
+        max-width: 95vw;
+    }
+    #ticketshadow {  
+        bottom: -80px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50%;
+        height: 20%;
+    }
+}
+@media (orientation: portrait) {
+    #ticket {
+        rotate: z 90deg;
+        perspective: 3000px;
+    }
+    #ticket img {
+        width: 80vh;
+    }
+    #ticketshadow {
+        top: 50%;
+        transform: translateY(-50%);
+        right: -40px;
+        width: calc(20% / 3.09);
+        height: 100%;
+    }
+}
+
+#ticket {
+    width: min-content;
+    display: grid;
+    grid-template-columns: 1fr;
+    --ticket-rotation: 0turn;
+}
+#ticket img {
+    position: relative;
+    grid-row-start: 1;
+    grid-column-start: 1;
+    backface-visibility: hidden;
+    user-select: none;
+    cursor: grab;
+}
+
+body[data-rotate="auto"] #ticket img {
+    animation-duration: 30s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-direction: reverse;
+}
+/* #ticket[data-rotate="manual"] {
+
+} */
+body[data-rotate="manual"] #ticket #front {
+    rotate: y var(--ticket-rotation)
+}
+body[data-rotate="manual"] #ticket #back {
+    rotate: y calc(var(--ticket-rotation) + 0.5turn)
+}
+
+
+#front {
+    animation-name: spin-front;
+}
+@keyframes spin-front {
+    from {
+        rotate: y 0turn
+    }
+    to {
+        rotate: y 1turn
+    }
+}
+
+#back {
+    animation-name: spin-back;
+}
+@keyframes spin-back {
+    from {
+        rotate: y 0.5turn
+    }
+    to {
+        rotate: y 1.5turn
+    }
+}
+
+#ticketshadow {
+    position: absolute;
+    background: radial-gradient(closest-side, rgba(0, 0, 0, 0.3), transparent);
+}
+
+@media (hover: hover) {
+    body {  
+        height: 100vh;
+    }
+    .touch {
+        display: none;
+    }
+}
+@media (hover: none) {
+    .mouse {
+        display: none;
+    }
+}
+
+#instructions {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: white;
+    /* text-shadow: 0 0 5px black; */
+    font-family:  "Montserrat", sans-serif;
+    font-weight: bold;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 1s;
+    font-size: 20px;
+}
+body[data-rotate="manual"] #instructions {
+    opacity: 0;
+}
+
+/* #debug {
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+
+} */
