@@ -7,6 +7,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link rel="icon" href="/static/favicon.png">
         <link rel="stylesheet" href="/static/style.css">
         <script src="/static/script.js" defer></script>
     </head>
@@ -15,13 +16,17 @@
         <div id="ticket-outer">
             <div id="ticket">
                 <div id="ticketshadow"></div>
-                <img draggable="false" id="front" src="/static/img/candy-cane-front.png" alt="Candy Cane Ticket Front">
-                <img draggable="false" id="back" src="/static/img/candy-cane-back.png" alt="Candy Cane Ticket Back">
+                <img draggable="false" id="front" src="./img/front.png" alt="Candy Cane Ticket Front">
+                <img draggable="false" id="back" src="./img/back.png" alt="Candy Cane Ticket Back">
             </div>
         </div>
         <div id="instructions">
             <span class="mouse">Click</span>
             <span class="touch">Touch</span> 
-            and drag to rotate the ticket yourself</div>
+            and drag to rotate the ticket yourself
+        </div>
+        <a id="download" href="./download.pdf" download="ticket.pdf">
+            <img src="/static/download.png" alt="download">
+        </a>
     </body>
 </html>

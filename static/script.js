@@ -28,10 +28,8 @@ function grabStart(x) {
     }
 }
 function grabMove(x) {
-    // console.log("moved");
     if (grabbing) {
         const dx = (x - initialMouseX) / ticketDiv.clientWidth * 180;
-        console.log(dx);
         ticketDiv.style.setProperty("--ticket-rotation", initialRotationNumber + dx + "deg");
     }
 }

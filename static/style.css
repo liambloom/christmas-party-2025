@@ -163,3 +163,13 @@ body[data-rotate="manual"] #instructions {
     background-color: rgba(0, 0, 0, 0.5);
 
 } */
+
+#download {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+}
+#download img {
+    width: 50px;
+    filter: invert(100%);
+}
